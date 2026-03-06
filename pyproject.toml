@@ -5,9 +5,25 @@ description = "A lightweight Python wrapper for the Rollbar SDK"
 requires-python = ">=3.11"
 dependencies = ["rollbar"]
 
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+[dependency-groups]
+dev = [
+    "ruff>=0.8.0",
+    "mypy>=1.14.1",
+    "pytest>=8.3.4",
+    "rust-just>=1.38.0",
+]
 
-[tool.hatch.build.targets.wheel]
-packages = ["src/py_rollbar_client"]
+[tool.setuptools]
+py-modules = []
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.mypy]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
