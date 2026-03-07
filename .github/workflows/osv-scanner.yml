@@ -1,0 +1,13 @@
+name: OSV-Scanner PR Scan
+
+on:
+  pull_request:
+
+permissions:
+  actions: read
+  security-events: write
+  contents: read
+
+jobs:
+  scan-pr:
+    uses: buffett-code-dev/github-actions/.github/workflows/osv-scanner.yml@main
