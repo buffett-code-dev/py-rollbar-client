@@ -3,7 +3,7 @@ from typing import Any
 
 import rollbar
 
-from py_rollbar_client.level import RollbarLevel
+from bc_rollbar_client.level import RollbarLevel
 
 logger = logging.getLogger(__name__)
 
@@ -14,6 +14,9 @@ class RollbarClient:
 
     Handles initialization and provides synchronous error reporting
     (waits for each report to be sent before returning).
+
+    Do not instantiate this class directly. Use bc_rollbar_client.init() /
+    bc_rollbar_client.get_instance() instead.
     """
 
     def __init__(self, access_token: str, environment: str) -> None:
