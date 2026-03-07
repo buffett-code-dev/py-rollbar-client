@@ -5,6 +5,7 @@ import pytest
 
 import bc_rollbar_client
 from bc_rollbar_client import RollbarClient, RollbarLevel
+from bc_rollbar_client.exceptions import RollbarInitError, RollbarReportError
 
 
 @pytest.fixture(autouse=True)
@@ -62,10 +63,26 @@ class TestModuleAccessor:
         mock_rollbar.init.assert_called_once_with(access_token="token", environment="staging")
 
     def test_get_instance_before_init_raises(self) -> None:
-        with pytest.raises(RuntimeError, match="not initialized"):
+        with pytest.raises(RollbarInitError, match="not initialized"):
             bc_rollbar_client.get_instance()
 
     def test_init_twice_raises(self, mock_rollbar: MagicMock) -> None:
         bc_rollbar_client.init(access_token="token", environment="staging")
-        with pytest.raises(RuntimeError, match="already initialized"):
+        with pytest.raises(RollbarInitError, match="already initialized"):
             bc_rollbar_client.init(access_token="token2", environment="production")
+
+
+class TestReportError:
+    def test_report_message_failure(self, mock_rollbar: MagicMock) -> None:
+        mock_rollbar.report_message.side_effect = Exception("connection error")
+        client = RollbarClient(access_token="test_token", environment="production")
+
+        with pytest.raises(RollbarReportError, match="Failed to report message"):
+            client.report_message("test")
+
+    def test_report_exception_failure(self, mock_rollbar: MagicMock) -> None:
+        mock_rollbar.report_exc_info.side_effect = Exception("connection error")
+        client = RollbarClient(access_token="test_token", environment="production")
+
+        with pytest.raises(RollbarReportError, match="Failed to report exception"):
+            client.report_exception()

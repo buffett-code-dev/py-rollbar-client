@@ -3,6 +3,7 @@ from typing import Any
 
 import rollbar
 
+from bc_rollbar_client.exceptions import RollbarReportError
 from bc_rollbar_client.level import RollbarLevel
 
 logger = logging.getLogger(__name__)
@@ -30,8 +31,11 @@ class RollbarClient:
         extra_data: dict[str, Any] | None = None,
     ) -> None:
         """Send a message to Rollbar."""
-        rollbar.report_message(message, level.value, extra_data=extra_data)
-        rollbar.wait()
+        try:
+            rollbar.report_message(message, level.value, extra_data=extra_data)
+            rollbar.wait()
+        except Exception as e:
+            raise RollbarReportError(f"Failed to report message: {e}") from e
         logger.info(f"Report message: {message}, level: {level.value}")
 
     def report_exception(
@@ -40,6 +44,9 @@ class RollbarClient:
         extra_data: dict[str, Any] | None = None,
     ) -> None:
         """Send the current exception to Rollbar. Must be called within an except block."""
-        rollbar.report_exc_info(level=level.value, extra_data=extra_data)
-        rollbar.wait()
+        try:
+            rollbar.report_exc_info(level=level.value, extra_data=extra_data)
+            rollbar.wait()
+        except Exception as e:
+            raise RollbarReportError(f"Failed to report exception: {e}") from e
         logger.info(f"Report exception: {level.value}, extra_data: {extra_data}")
