@@ -15,6 +15,7 @@ dev = [
 
 [tool.setuptools]
 py-modules = []
+packages = ["bc_rollbar_client"]
 
 [tool.ruff]
 line-length = 120
