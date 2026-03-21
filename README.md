@@ -13,9 +13,10 @@ A lightweight Python wrapper for the Rollbar SDK.
 Call `init()` once at application startup:
 
 ```python
-import bc_rollbar_client
+from bc_rollbar_client import RollbarConfig, init
 
-bc_rollbar_client.init(access_token="YOUR_TOKEN", environment="production")
+config = RollbarConfig(access_token="YOUR_TOKEN", environment="production")
+init(config)
 ```
 
 ### Reporting

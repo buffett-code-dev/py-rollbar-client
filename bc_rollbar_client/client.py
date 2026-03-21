@@ -3,6 +3,7 @@ from typing import Any
 
 import rollbar
 
+from bc_rollbar_client.config import RollbarConfig
 from bc_rollbar_client.exceptions import RollbarReportError
 from bc_rollbar_client.level import RollbarLevel
 
@@ -22,13 +23,12 @@ class RollbarClient:
 
     def __init__(
         self,
-        access_token: str,
-        environment: str,
+        config: RollbarConfig,
         logger: logging.Logger | None = None,
     ) -> None:
         self._logger = logger or _default_logger
-        rollbar.init(access_token=access_token, environment=environment)
-        self._logger.info(f"Rollbar initialized (environment: {environment})")
+        rollbar.init(access_token=config.access_token, environment=config.environment)
+        self._logger.info(f"Rollbar initialized (environment: {config.environment})")
 
     def report_message(
         self,
