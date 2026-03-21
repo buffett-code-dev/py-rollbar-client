@@ -1,0 +1,11 @@
+{
+  "packages": {
+    ".": {
+      "release-type": "python",
+      "package-name": "py-rollbar-client",
+      "extra-files": [
+        "pyproject.toml"
+      ]
+    }
+  }
+}
