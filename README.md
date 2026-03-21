@@ -35,3 +35,18 @@ try:
 except Exception:
     get_instance().report_exception(level=RollbarLevel.ERROR)
 ```
+
+## Commit Convention
+
+This project follows [Conventional Commits](https://www.conventionalcommits.org/). PR titles are validated by CI.
+
+| Prefix | Purpose | Version Bump |
+|--------|---------|--------------|
+| `feat:` | New feature | Minor |
+| `fix:` | Bug fix | Patch |
+| `chore:` | Maintenance (deps, CI, etc.) | None |
+| `docs:` | Documentation | None |
+| `refactor:` | Code refactoring | None |
+| `test:` | Tests | None |
+
+Breaking changes: add `!` after the prefix (e.g., `feat!:`) for a major version bump.
