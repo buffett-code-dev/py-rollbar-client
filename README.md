@@ -35,3 +35,11 @@ try:
 except Exception:
     get_instance().report_exception(level=RollbarLevel.ERROR)
 ```
+
+## Releasing
+
+This project uses [release-please](https://github.com/googleapis/release-please) for automated releases. When PRs are merged to `main`, release-please automatically creates/updates a release PR. Merging the release PR will:
+
+1. Bump the version in `pyproject.toml`
+2. Update `CHANGELOG.md`
+3. Create a GitHub Release with a git tag (e.g., `v0.2.0`)
