@@ -63,3 +63,5 @@ This project uses [release-please](https://github.com/googleapis/release-please)
 1. Bump the version in `pyproject.toml`
 2. Update `CHANGELOG.md`
 3. Create a GitHub Release with a git tag (e.g., `v0.2.0`)
+
+> **Note:** CI does not run on release-please PRs due to a [GitHub limitation](https://github.com/buffett-code-dev/py-rollbar-client/issues/16) — workflows are not triggered by the default `GITHUB_TOKEN`. This is low risk since these PRs only update version and changelog.
