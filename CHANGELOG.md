@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.0](https://github.com/buffett-code-dev/py-rollbar-client/compare/v0.2.0...v0.3.0) (2026-03-21)
+
+
+### Features
+
+* introduce RollbarConfig dataclass for initialization ([5e9db81](https://github.com/buffett-code-dev/py-rollbar-client/commit/5e9db8198fefae11e99664669f0dc0134f1e9f24))
+* introduce RollbarConfig dataclass for initialization ([#14](https://github.com/buffett-code-dev/py-rollbar-client/issues/14)) ([396dc9b](https://github.com/buffett-code-dev/py-rollbar-client/commit/396dc9b99e6b43240ca2edf6d18b18d3af6f20d2))
+
 ## [0.2.0](https://github.com/buffett-code-dev/py-rollbar-client/compare/py-rollbar-client-v0.1.0...py-rollbar-client-v0.2.0) (2026-03-21)
 
 
