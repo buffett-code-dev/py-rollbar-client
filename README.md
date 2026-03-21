@@ -1,5 +1,7 @@
 # py-rollbar-client
 
+[![Latest Release](https://img.shields.io/github/v/release/buffett-code-dev/py-rollbar-client)](https://github.com/buffett-code-dev/py-rollbar-client/releases/latest)
+
 A lightweight Python wrapper for the Rollbar SDK.
 
 ## Usage
@@ -38,7 +40,7 @@ except Exception:
 
 ## Releasing
 
-This project uses [release-please](https://github.com/googleapis/release-please) for automated releases. To create a release, manually trigger the "Release Please" workflow from the Actions tab. This will create/update a release PR. Merging the release PR will:
+This project uses [release-please](https://github.com/googleapis/release-please) for automated releases. To create a release, manually trigger the ["Release Please" workflow](https://github.com/buffett-code-dev/py-rollbar-client/actions/workflows/release-please.yml) from the Actions tab. This will create/update a release PR. Merging the release PR will:
 
 1. Bump the version in `pyproject.toml`
 2. Update `CHANGELOG.md`
