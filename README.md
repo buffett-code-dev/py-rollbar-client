@@ -25,17 +25,19 @@ Use `get_instance()` anywhere to access the initialized client:
 ```python
 from bc_rollbar_client import get_instance, RollbarLevel
 
+client = get_instance()
+
 # Report a message
-get_instance().report_message("Something went wrong", level=RollbarLevel.WARNING)
+client.report_message("Something went wrong", level=RollbarLevel.WARNING)
 
 # Report a message with extra data
-get_instance().report_message("User error", extra_data={"user_id": "123"})
+client.report_message("User error", extra_data={"user_id": "123"})
 
 # Report an exception (must be called within an except block)
 try:
     do_something()
 except Exception:
-    get_instance().report_exception(level=RollbarLevel.ERROR)
+    client.report_exception(level=RollbarLevel.ERROR)
 ```
 
 ## Releasing
