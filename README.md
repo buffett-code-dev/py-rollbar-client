@@ -38,7 +38,7 @@ except Exception:
 
 ## Releasing
 
-This project uses [release-please](https://github.com/googleapis/release-please) for automated releases. When PRs are merged to `main`, release-please automatically creates/updates a release PR. Merging the release PR will:
+This project uses [release-please](https://github.com/googleapis/release-please) for automated releases. To create a release, manually trigger the "Release Please" workflow from the Actions tab. This will create/update a release PR. Merging the release PR will:
 
 1. Bump the version in `pyproject.toml`
 2. Update `CHANGELOG.md`
