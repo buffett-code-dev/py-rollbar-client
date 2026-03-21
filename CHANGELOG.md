@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/buffett-code-dev/py-rollbar-client/compare/py-rollbar-client-v0.2.0...py-rollbar-client-v0.3.0) (2026-03-21)
+
+
+### Features
+
+* add Conventional Commits linting for PR titles ([ae23a09](https://github.com/buffett-code-dev/py-rollbar-client/commit/ae23a093d37359d5460587ee5afc1387c1d063d7))
+
 ## [0.2.0](https://github.com/buffett-code-dev/py-rollbar-client/compare/py-rollbar-client-v0.1.0...py-rollbar-client-v0.2.0) (2026-03-21)
 
 
