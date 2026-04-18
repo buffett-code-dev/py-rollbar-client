@@ -7,7 +7,7 @@ dependencies = ["rollbar"]
 
 [dependency-groups]
 dev = [
-    "ruff>=0.8.0",
+    "ruff>=0.15.10",
     "mypy>=1.14.1",
     "pytest>=8.3.4",
     "rust-just>=1.38.0",
