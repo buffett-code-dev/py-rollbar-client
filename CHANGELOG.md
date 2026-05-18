@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.1](https://github.com/buffett-code-dev/py-rollbar-client/compare/v0.3.0...v0.3.1) (2026-05-18)
+
+
+### Documentation
+
+* add note about CI limitation on release-please PRs ([fb22b81](https://github.com/buffett-code-dev/py-rollbar-client/commit/fb22b818bcf1f83aba132d69f11e617c2965619d))
+* add note about CI limitation on release-please PRs ([#17](https://github.com/buffett-code-dev/py-rollbar-client/issues/17)) ([524c61e](https://github.com/buffett-code-dev/py-rollbar-client/commit/524c61e0f50278c3b9f041631c20b4a08647c8b7))
+
 ## [0.3.0](https://github.com/buffett-code-dev/py-rollbar-client/compare/v0.2.0...v0.3.0) (2026-03-21)
 
 
