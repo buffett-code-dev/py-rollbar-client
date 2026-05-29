@@ -65,3 +65,15 @@ This project uses [release-please](https://github.com/googleapis/release-please)
 3. Create a GitHub Release with a git tag (e.g., `v0.2.0`)
 
 > **Note:** CI does not run on release-please PRs due to a [GitHub limitation](https://github.com/buffett-code-dev/py-rollbar-client/issues/16) — workflows are not triggered by the default `GITHUB_TOKEN`. This is low risk since these PRs only update version and changelog.
+
+### Post-release: Update dependent repositories
+
+After merging a release PR, instruct Devin to update all repositories that depend on this package:
+
+```
+@Devin py-rollbar-client を利用してるリポジトリ全てに対し、
+https://github.com/buffett-code-dev/py-rollbar-client/releases/tag/vX.Y.Z
+を使うように変更してPRを作ってほしい
+```
+
+Replace `vX.Y.Z` with the version that was just released.
