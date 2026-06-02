@@ -1,0 +1,15 @@
+name: Manage stale items
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: buffett-code-dev/github-actions/github/manage-stale-items@main
