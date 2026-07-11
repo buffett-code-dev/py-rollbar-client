@@ -1,0 +1,39 @@
+name: Release reminder
+
+on:
+  schedule:
+    # 毎週月曜 0:00 UTC (JST 9:00)。下記の週番号チェックで隔週(2週に1回)のみ実行する
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+
+jobs:
+  reminder:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: Check biweekly schedule
+        id: schedule
+        run: |
+          # ISO 週番号が偶数の週だけ実行することで 2 週に 1 回にする
+          # (workflow_dispatch の手動実行時は常に実行)
+          WEEK=$(date -u +%V)
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ $((10#$WEEK % 2)) -eq 0 ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping: ISO week $WEEK is odd (biweekly schedule)."
+          fi
+
+      - uses: actions/checkout@v6
+        if: ${{ steps.schedule.outputs.run == 'true' }}
+        with:
+          fetch-depth: 0
+
+      - uses: buffett-code-dev/github-actions/github/create-release-reminder-issue@main
+        if: ${{ steps.schedule.outputs.run == 'true' }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          base-branch: main
+          assignees: "ShogoAkiyama"
