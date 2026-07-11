@@ -31,9 +31,45 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Resolve code owners
+        id: owners
+        if: ${{ steps.schedule.outputs.run == 'true' }}
+        run: |
+          # CODEOWNERS のデフォルトルール(*)からアサイン先を解決する。
+          # チーム(@org/team)は issue の assignee にできないため除外し、個人ユーザーのみ抽出する。
+          CODEOWNERS_FILE=""
+          for f in .github/CODEOWNERS CODEOWNERS docs/CODEOWNERS; do
+            if [ -f "$f" ]; then
+              CODEOWNERS_FILE="$f"
+              break
+            fi
+          done
+
+          if [ -z "$CODEOWNERS_FILE" ]; then
+            echo "CODEOWNERS not found." >&2
+            exit 1
+          fi
+
+          ASSIGNEES=$(grep -E '^\*[[:space:]]' "$CODEOWNERS_FILE" \
+            | head -1 \
+            | tr -s '[:space:]' ' ' \
+            | tr ' ' '\n' \
+            | grep '^@' \
+            | grep -v '/' \
+            | sed 's/^@//' \
+            | paste -sd, -)
+
+          if [ -z "$ASSIGNEES" ]; then
+            echo "No individual code owner found in $CODEOWNERS_FILE." >&2
+            exit 1
+          fi
+
+          echo "Resolved assignees: $ASSIGNEES"
+          echo "assignees=$ASSIGNEES" >> "$GITHUB_OUTPUT"
+
       - uses: buffett-code-dev/github-actions/github/create-release-reminder-issue@main
         if: ${{ steps.schedule.outputs.run == 'true' }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           base-branch: main
-          assignees: "ShogoAkiyama"
+          assignees: ${{ steps.owners.outputs.assignees }}
