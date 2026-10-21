@@ -3,7 +3,8 @@ name = "py-rollbar-client"
 version = "0.3.1"
 description = "A lightweight Python wrapper for the Rollbar SDK"
 requires-python = ">=3.11"
-dependencies = ["rollbar"]
+dependencies = [
+    "certifi>=2026.10.19","rollbar"]
 
 [dependency-groups]
 dev = [
